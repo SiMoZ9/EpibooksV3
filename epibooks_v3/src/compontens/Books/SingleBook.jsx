@@ -1,44 +1,23 @@
 import React from "react";
 
-const SingleBook = ({ title, category, img }) => {
+const SingleBook = ({ title, category, img, price }) => {
   return (
-    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <a href="#">
-        <img className="rounded-t-lg" src={img} alt="" />
-      </a>
-      <div className="p-5">
-        <a href="#">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            {title}
-          </h5>
-        </a>
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-          {category}
-        </p>
-        <a
-          href="#"
-          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-          Read more
-          <svg
-            className="w-3.5 h-3.5 ml-2"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 14 10"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M1 5h12m0 0L9 1m4 4L9 9"
-            />
-          </svg>
-        </a>
-      </div>
-    </div>
-  );
-};
+      <>
+          <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+              <img src={img}
+                   alt="Product" className="h-80 w-72 object-cover rounded-t-xl" />
+              <div className="px-4 py-3 w-72">
+                <span className="text-gray-400 mr-3 uppercase text-xs">{category}</span>
+                <p className="text-lg font-bold text-black truncate block capitalize">{title}</p>
+                <div className="flex items-center">
+                  <p className="text-lg font-semibold text-black cursor-auto my-3">{price}</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </>
+);
+}
 
 export default SingleBook;

@@ -8,11 +8,13 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 
 import combineBookStore from "./reducers/bookReducers";
+import combineSearch from "./reducers/searchReducer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const reducer = combineReducers({
   bookStore: combineBookStore,
+  searchZone: combineSearch,
 });
 
 const store = configureStore({
@@ -22,7 +24,7 @@ const store = configureStore({
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <div className="dark:bg-gray-800 bg-gradient-to-br from-blue-300 to-blue-700">
+      <div className="bg-white dark:bg-gray-800">
         <App />
       </div>
     </Provider>

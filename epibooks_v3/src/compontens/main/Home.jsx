@@ -6,8 +6,10 @@ import Welcome from "../WelcomePage/Welcome";
 const Home = () => {
   return (
     <MainLayout>
-      <Welcome />
-      <BookArea />
+      <main>
+        <Welcome />
+        <BookArea />
+      </main>
     </MainLayout>
   );
 };
