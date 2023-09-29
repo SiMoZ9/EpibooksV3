@@ -9,12 +9,14 @@ import { Provider } from "react-redux";
 
 import combineBookStore from "./reducers/bookReducers";
 import combineSearch from "./reducers/searchReducer";
+import combineComments from "./reducers/commentsReducers";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const reducer = combineReducers({
   bookStore: combineBookStore,
   searchZone: combineSearch,
+  comments: combineComments,
 });
 
 const store = configureStore({

@@ -4,6 +4,8 @@ import { setSearch, S_value } from "../../reducers/searchReducer";
 
 import { fetchedBooks, filtered, setBooks } from "../../reducers/bookReducers";
 
+import { Link } from "react-router-dom";
+
 const Navigation = ({ searchValues }) => {
   const searchValue = useSelector(S_value);
   const books = useSelector(fetchedBooks);
@@ -30,7 +32,7 @@ const Navigation = ({ searchValues }) => {
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="#" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Vector_Book_blue.svg/120px-Vector_Book_blue.svg.png?20130725142549"
             className="h-8 mr-3"
@@ -39,7 +41,7 @@ const Navigation = ({ searchValues }) => {
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             Epibooks
           </span>
-        </a>
+        </Link>
         <div className="flex md:order-2">
           <button
             type="button"
@@ -114,6 +116,7 @@ const Navigation = ({ searchValues }) => {
                   id="default-search"
                   className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Search"
+                  required
                   onChange={(e) => getValueFromForm(e.target.value)}
                 />
                 <button
@@ -132,7 +135,6 @@ const Navigation = ({ searchValues }) => {
             aria-controls="navbar-search"
             aria-expanded="false"
           >
-            <span className="sr-only">Open main menu</span>
             <svg
               className="w-5 h-5"
               aria-hidden="true"
@@ -181,29 +183,28 @@ const Navigation = ({ searchValues }) => {
           </div>
           <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
-              <a
-                href="#"
-                className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
-                aria-current="page"
+              <Link
+                to="/"
+                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/about"
                 className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               >
                 About
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/contact-us"
                 className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               >
-                Services
-              </a>
+                Contact Us
+              </Link>
             </li>
           </ul>
         </div>

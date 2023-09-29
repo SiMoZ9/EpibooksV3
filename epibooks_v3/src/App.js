@@ -2,15 +2,19 @@ import React from "react";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import Home from "./compontens/main/Home";
 import BookDetail from "./pages/BooksDetail";
-import CommentArea from "./compontens/Comments/CommentArea";
-
+import About from "./pages/About";
+import ContactUs from "./pages/ContactUs";
+import PageNotFound from "./pages/PageNotFound";
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/book/:bookId" element={<BookDetail />} />
-        <Route path="/comments" element={<CommentArea />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact-us" element={<ContactUs />} />
+
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   );

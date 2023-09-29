@@ -14,6 +14,9 @@ import { nanoid } from "nanoid";
 
 import { S_value } from "../../reducers/searchReducer";
 import { BeatLoader } from "react-spinners";
+import CommentArea from "../Comments/CommentArea";
+
+import { fetchComments } from "../../reducers/commentsReducers";
 
 const BookArea = () => {
   const BOOK_API = "https://epibooks.onrender.com";
@@ -29,6 +32,7 @@ const BookArea = () => {
 
   const dispatch = useDispatch();
   //
+
   useEffect(() => {
     dispatch(fetchBooks(BOOK_API));
   }, []);
@@ -38,31 +42,37 @@ const BookArea = () => {
   }, [books]);
 
   return (
-    <section className="w-fit mx-auto grid grid-cols-1 xl:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
-      {error && <h1>Errore durante il caricamento dei libri</h1>}
-      {loading && !error && (
-        <BeatLoader
-          className="w-1"
-          loading={loading}
-          size={150}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-        />
-      )}
-
-      {!loading && !error}
-      {!loading &&
-        !error &&
-        filteredBooks.map((book) => (
-          <SingleBook
-            key={nanoid()}
-            title={book.title}
-            category={book.category}
-            img={book.img}
-            price={`€ ${book.price}`}
-            asin={book.asin}
+    <section>
+      <div>{!loading && !error && <CommentArea />}</div>
+      <div
+        className="grid grid-cols-1 xl:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5 w-fit mx-auto"
+        id="Books"
+      >
+        {error && <h1>Errore durante il caricamento dei libri</h1>}
+        {loading && !error && (
+          <BeatLoader
+            className="w-1"
+            loading={loading}
+            size={150}
+            aria-label="Loading Spinner"
+            data-testid="loader"
           />
-        ))}
+        )}
+
+        {!loading && !error}
+        {!loading &&
+          !error &&
+          filteredBooks.map((book) => (
+            <SingleBook
+              key={nanoid()}
+              title={book.title}
+              category={book.category}
+              img={book.img}
+              price={`€ ${book.price}`}
+              asin={book.asin}
+            />
+          ))}
+      </div>
     </section>
   );
 };

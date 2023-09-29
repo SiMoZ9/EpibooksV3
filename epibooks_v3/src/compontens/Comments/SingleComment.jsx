@@ -3,7 +3,6 @@ import React from "react";
 const SingleComment = ({ author, comment, rate }) => {
   return (
     <div className="bg-gray-100 p-6">
-      <h2 className="text-lg font-bold mb-4">Comments</h2>
       <div className="flex flex-col space-y-4">
         <div className="bg-white p-4 rounded-lg shadow-md">
           <h3 className="text-lg font-bold">{author}</h3>

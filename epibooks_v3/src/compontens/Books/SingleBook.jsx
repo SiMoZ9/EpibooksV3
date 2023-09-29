@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selected, setSelected } from "../../reducers/bookReducers";
 import { addAsin, Asin, fetchComments } from "../../reducers/commentsReducers";
@@ -24,11 +24,15 @@ const SingleBook = ({ title, category, img, price, asin }) => {
     },
   };
 
+  useEffect(() => {}, []);
+
   const handleClick = () => {
     setIsSelected(!_selected);
     dispatch(setSelected(_selected));
     dispatch(addAsin(asin));
     dispatch(fetchComments(fetchParams));
+
+    console.log(id);
   };
 
   return (
@@ -38,6 +42,7 @@ const SingleBook = ({ title, category, img, price, asin }) => {
           src={img}
           alt="Product"
           className="h-80 w-72 object-cover rounded-t-xl"
+          onClick={handleClick}
         />
         <div className="px-4 py-3 w-72">
           <span className="text-gray-400 mr-3 uppercase text-xs">
