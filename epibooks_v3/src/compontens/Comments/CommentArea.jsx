@@ -3,8 +3,20 @@ import CommentList from "./CommentList";
 import { nanoid } from "nanoid";
 
 import { useSelector } from "react-redux";
+import { selected } from "../../reducers/bookReducers";
+import {
+  allComments,
+  errors,
+  isLoading,
+} from "../../reducers/commentsReducers";
 
-const CommentArea = ({ isSelected, loading, error, comments }) => {
+const CommentArea = () => {
+  const comments = useSelector(allComments);
+  const loading = useSelector(isLoading);
+  const error = useSelector(errors);
+
+  const isSelected = useSelector(selected);
+
   return (
     <>
       <div

@@ -2,34 +2,34 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selected, setSelected } from "../../reducers/bookReducers";
-import { addAsin, fetchComments } from "../../reducers/commentsReducers";
+import { addAsin, Asin, fetchComments } from "../../reducers/commentsReducers";
 import CommentArea from "../Comments/CommentArea";
 
 const SingleBook = ({ title, category, img, price, asin }) => {
-  // const [selected, setIsSelected] = useState(false);
-  // const dispatch = useDispatch();
-  //
-  // const id = useSelector(asin);
-  // const API_URL = `https://striveschool-api.herokuapp.com/api/comments/`;
-  //
-  // const handleClick = () => {
-  //   setIsSelected(!selected);
-  //   dispatch(setSelected(selected));
-  //   dispatch(addAsin(asin));
-  //   dispatch(fetchComments(fetchParams));
-  // };
-  //
-  // const fetchParams = {
-  //   url: API_URL + asin,
-  //   params: {
-  //     method: "GET",
-  //     headers: {
-  //       Authorization:
-  //         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGZhMDBlOGU4NDIyNzAwMTRjMzI2NzciLCJpYXQiOjE2OTU3MzMxNTgsImV4cCI6MTY5Njk0Mjc1OH0.z-Fxi9IbskrELa5IM7x6ua1Cvdx1FFmvztf_1R_Pwkg",
-  //       "Content-Type": "application/json",
-  //     },
-  //   },
-  // };
+  const [_selected, setIsSelected] = useState(false);
+  const dispatch = useDispatch();
+
+  const id = useSelector(Asin);
+  const API_URL = `https://striveschool-api.herokuapp.com/api/comments/`;
+
+  const fetchParams = {
+    url: API_URL + asin,
+    params: {
+      method: "GET",
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGZhMDBlOGU4NDIyNzAwMTRjMzI2NzciLCJpYXQiOjE2OTU3MzMxNTgsImV4cCI6MTY5Njk0Mjc1OH0.z-Fxi9IbskrELa5IM7x6ua1Cvdx1FFmvztf_1R_Pwkg",
+        "Content-Type": "application/json",
+      },
+    },
+  };
+
+  const handleClick = () => {
+    setIsSelected(!_selected);
+    dispatch(setSelected(_selected));
+    dispatch(addAsin(asin));
+    dispatch(fetchComments(fetchParams));
+  };
 
   return (
     <>

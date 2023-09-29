@@ -66,7 +66,7 @@ export const { addComment, addAsin, addRate } = commentSlice.actions;
 export const allComments = (state) => state.comments.comments;
 export const rate = (state) => state.comments.newComment.rate;
 export const cm = (state) => state.comments.newComment.comment;
-export const asin = (state) => state.comments.newComment.elementId;
+export const Asin = (state) => state.comments.newComment.elementId;
 export const isLoading = (state) => state.comments.isLoading;
 export const errors = (state) => state.comments.error;
 export default commentSlice.reducer;
