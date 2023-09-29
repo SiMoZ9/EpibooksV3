@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setSearch, S_value } from "../../reducers/searchReducer";
 
-import { fetchedBooks, filter, setBooks } from "../../reducers/bookReducers";
+import { fetchedBooks, filtered, setBooks } from "../../reducers/bookReducers";
 
 const Navigation = ({ searchValues }) => {
   const searchValue = useSelector(S_value);
   const books = useSelector(fetchedBooks);
-  const filteredBooks = useSelector(filter);
+  const filteredBooks = useSelector(filtered);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,13 +15,13 @@ const Navigation = ({ searchValues }) => {
   }, []);
 
   const getValueFromForm = (e) => {
-    if (searchValue === "") dispatch(setBooks(filteredBooks));
+    if (searchValue === "") dispatch(setBooks(books));
     dispatch(setSearch(e));
   };
 
   const handleSearch = (e) => {
     e.preventDefault();
-    const booksFiltered = filteredBooks.filter((book) =>
+    const booksFiltered = books.filter((book) =>
       book.title.toLowerCase().includes(searchValue.toLowerCase()),
     );
     dispatch(setBooks(booksFiltered));
@@ -114,7 +114,6 @@ const Navigation = ({ searchValues }) => {
                   id="default-search"
                   className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Search"
-                  required
                   onChange={(e) => getValueFromForm(e.target.value)}
                 />
                 <button

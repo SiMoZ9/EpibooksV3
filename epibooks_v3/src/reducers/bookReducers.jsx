@@ -5,14 +5,15 @@ const initialState = {
   isLoading: false,
   error: null,
   filteredBooks: [],
+  selected: false,
+  bookId: "",
 };
 
 export const fetchBooks = createAsyncThunk(
   "bookStore/fetchBooks",
-  async (params) => {
+  async (url) => {
     try {
-      const { url, fetchParams } = params;
-      const data = await fetch(url, fetchParams);
+      const data = await fetch(url);
       return await data.json();
     } catch (err) {
       return err;
@@ -26,7 +27,10 @@ const bookSlice = createSlice({
 
   reducers: {
     setBooks: (state, action) => {
-      state.filteredBooks.push(action.payload);
+      state.filteredBooks = action.payload;
+    },
+    setSelected: (state) => {
+      state.selected = !state.selected;
     },
   },
 
@@ -45,10 +49,11 @@ const bookSlice = createSlice({
   },
 });
 
-export const { setBooks } = bookSlice.actions;
+export const { setBooks, setSelected } = bookSlice.actions;
 
 export const fetchedBooks = (state) => state.bookStore.books;
 export const fetchLoading = (state) => state.bookStore.isLoading;
 export const fetchError = (state) => state.bookStore.error;
-export const filter = (state) => state.bookStore.filteredBooks;
+export const filtered = (state) => state.bookStore.filteredBooks;
+export const selected = (state) => state.bookStore.selected;
 export default bookSlice.reducer;
